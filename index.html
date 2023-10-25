@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Ding!</title>
+
+    <style>
+      html, body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      .bell {
+        position: absolute;
+      }
+
+      .ring {
+        animation: animate-clock-bell 100ms linear infinite;
+      }
+
+      @keyframes animate-clock-bell {
+        0% { transform: translate(-3px, -2px); }
+        100% { transform: translate(3px, 2px); }
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <img id="bell" src="bell.png" class="bell" onclick="play()">
+
+    <audio id="audio" src="ding.mp3"></audio>
+
+    <script>
+      const bell = document.getElementById("bell");
+      const audio = document.getElementById("audio");
+
+      function play() {
+        bell.classList.add('ring');
+
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play();
+
+        setTimeout(() => bell.classList.remove('ring'), 5000);
+      }
+    </script>
+  </body>
+</html>
